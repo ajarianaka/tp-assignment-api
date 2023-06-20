@@ -6,6 +6,7 @@ import { UserDoc } from "../interfaces/user.interface";
 var jwt = require("jsonwebtoken");
 import { configs } from "../config/auth.config";
 import * as bcrypt from "bcryptjs";
+import { IPagination } from "../interfaces/IPagination";
 
 export class UserController extends BaseController {
   constructor() {
@@ -22,7 +23,7 @@ export class UserController extends BaseController {
       isProf: req.body.isProf,
       password: await bcrypt.hash(req.body.password, 8),
     };
-    this.create(res, user);
+    this.create(res, user, { path: '', select: '-password' });
   }
 
   async login(req: Request, res: Response) {
@@ -78,7 +79,29 @@ export class UserController extends BaseController {
     }
   }
 
-  getUserList(res: Response) {
-    return this.findMany(res, {}, undefined, { remove: true, fields: ["password"] }, "");
+  getUserList(req: Request, res: Response) {
+    let pagination: IPagination = {
+      page: req.query.page ? parseInt(req.query.page.toString()) : undefined,
+      PageSize: req.query.pageSize ? parseInt(req.query.pageSize!.toString()) : undefined
+    }
+    return this.findMany(res, {}, undefined, { remove: true, fields: ["password"] }, pagination, "");
+  }
+
+  getStudents(req: Request, res: Response) {
+    let pagination: IPagination = {
+      page: req.query.page ? parseInt(req.query.page.toString()) : undefined,
+      PageSize: req.query.pageSize ? parseInt(req.query.pageSize!.toString()) : undefined
+    }
+    return this.findMany(res, { isAdmin: false, isProf: false }, undefined, { remove: true, fields: ["password"] }, pagination, "");
+
+  }
+
+  getProfs(req: Request, res: Response) {
+    let pagination: IPagination = {
+      page: req.query.page ? parseInt(req.query.page.toString()) : undefined,
+      PageSize: req.query.pageSize ? parseInt(req.query.pageSize!.toString()) : undefined
+    }
+    return this.findMany(res, { isProf: true }, undefined, { remove: true, fields: ["password"] }, pagination, "");
+
   }
 }

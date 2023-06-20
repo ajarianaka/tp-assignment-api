@@ -1,6 +1,5 @@
 import { Document } from "mongoose";
 import { User } from "./user.interface";
-//import * as bcrypt from "bcryptjs";
 /*
  * Interface with all the document fields, excluding the _id field so it can be extended for multiple uses
  */

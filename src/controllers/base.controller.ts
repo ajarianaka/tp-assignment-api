@@ -5,6 +5,7 @@ import { IModel } from '../interfaces/IModel';
 import { IPopulate } from '../interfaces/IPopulate';
 import { BaseModel } from '../models/base.model';
 import { ISelect } from '../interfaces/ISelect';
+import { IPagination } from '../interfaces/IPagination';
 
 /**
  * Provides functions to be used with express routes. Serves common CRUD fuctionality. 
@@ -21,7 +22,11 @@ export class BaseController {
     * @param res the response object that will be used to send http response
     */
     jsonRes(doc: any, res: Response) {
-        res.status(200).json(doc);
+        if(doc){
+            res.status(200).json(doc);
+        }else{
+            res.status(404).json({message:"Record not found"})
+        }
     }
     /**
      * @param err error object of any type genereated by the system
@@ -55,8 +60,8 @@ export class BaseController {
     /**
      * Returns all documents of model
      */
-    find(res: Response, populate?: IPopulate, select?: ISelect, errMsg = 'Failed to find documents') {
-        this.model.find(populate, select).then(doc => { this.jsonRes(doc, res) }, err => { this.errRes(err, res, errMsg) });
+    find(res: Response, populate?: IPopulate, select?: ISelect, pagination?: IPagination, errMsg = 'Failed to find documents') {
+        this.model.find(populate, select, pagination).then(doc => { this.jsonRes(doc, res) }, err => { this.errRes(err, res, errMsg) });
     }
     /**
      * Returns single doucument of model specified by _id. 
@@ -70,8 +75,8 @@ export class BaseController {
     findOne(res: Response, query: any, populate?: IPopulate, select?: ISelect, errMsg = `Failed to find document ${query}`) {
         this.model.findOne(query, populate, select).then(doc => { this.jsonRes(doc, res) }, err => { this.errRes(err, res, errMsg) });
     }
-    findMany(res: Response, query: any, populate?: IPopulate, select?: ISelect, errMsg = `Failed to find document ${query}`) {
-        this.model.findMany(query, populate, select).then(doc => { this.jsonRes(doc, res) }, err => { this.errRes(err, res, errMsg) });
+    findMany(res: Response, query: any, populate?: IPopulate, select?: ISelect, pagination?: IPagination, errMsg = `Failed to find document ${query}`) {
+        this.model.findMany(query, populate, select, pagination).then(doc => { this.jsonRes(doc, res) }, err => { this.errRes(err, res, errMsg) });
     }
 
     /**

@@ -1,6 +1,7 @@
 import mongoose = require("mongoose");
 import { IPopulate } from "../interfaces/IPopulate";
 import { ISelect } from "../interfaces/ISelect";
+import { IPagination } from "../interfaces/IPagination";
 
 /**
  * Provides common CRUD functionality to provided mongoose moodel.
@@ -14,25 +15,33 @@ export class BaseModel {
     return this.mongooseModel.create(document);
   }
 
-  find<T>(populate?: IPopulate, select?: ISelect): Promise<T[]> {
+  find<T>(populate?: IPopulate, select?: ISelect,pagination?:IPagination): Promise<T[]> {
+    let query = this.mongooseModel.find();
     if (select) {
       let selectFields = select.remove ? '-' + select.fields.join(" -") : select.fields.join(" ");
-      return populate
-        ? this.mongooseModel.find().select(selectFields).populate(populate).exec()
-        : this.mongooseModel.find().select(selectFields).exec();
+      query = query.select(selectFields);
     }
+    if (populate) {
+      query = query.populate(populate);
+    }
+    const page = pagination?.page;
+    const perPage = pagination?.PageSize;
 
-    return populate
-      ? this.mongooseModel.find().populate(populate).exec()
-      : this.mongooseModel.find().exec();
+    if (page && perPage) {
+      const skipAmount = (page - 1) * perPage;
+      query = query.skip(skipAmount).limit(perPage);
+    } 
+
+    return query.exec();
   }
+
 
   findById<T>(id: string, populate?: IPopulate, select?: ISelect): Promise<T> {
     if (select) {
       let selectFields = select.remove ? '-' + select.fields.join(" -") : select.fields.join(" ");
       return populate
-      ? this.mongooseModel.findById(id).select(selectFields).populate(populate).exec()
-      : this.mongooseModel.findById(id).select(selectFields).exec();
+        ? this.mongooseModel.findById(id).select(selectFields).populate(populate).exec()
+        : this.mongooseModel.findById(id).select(selectFields).exec();
     }
     return populate
       ? this.mongooseModel.findById(id).populate(populate).exec()
@@ -43,39 +52,47 @@ export class BaseModel {
     if (select) {
       let selectFields = select.remove ? '-' + select.fields.join(" -") : select.fields.join(" ");
       return populate
-      ? this.mongooseModel.findOne(query).select(selectFields).populate(populate).exec()
-      : this.mongooseModel.findOne(query).select(selectFields).exec();
+        ? this.mongooseModel.findOne(query).select(selectFields).populate(populate).exec()
+        : this.mongooseModel.findOne(query).select(selectFields).exec();
     }
     return populate
       ? this.mongooseModel.findOne(query).populate(populate).exec()
       : this.mongooseModel.findOne(query).exec();
   }
 
-  findMany<T>(query: any, populate?: IPopulate, select?: ISelect): Promise<any[] | T> {
+  findMany<T>(query: any, populate?: IPopulate, select?: ISelect,pagination?:IPagination): Promise<any[] | T> {
+    let queried = this.mongooseModel.find(query);
+
     if (select) {
       let selectFields = select.remove ? '-' + select.fields.join(" -") : select.fields.join(" ");
-      return populate
-      ? this.mongooseModel.find(query).select(selectFields).populate(populate).exec()
-      : this.mongooseModel.find(query).select(selectFields).exec();
+      queried = queried.select(selectFields);
     }
-    return populate
-      ? this.mongooseModel.find(query).populate(populate).exec()
-      : this.mongooseModel.find(query).exec();
+    if (populate) {
+      queried = queried.populate(populate);
+    }
+    const page = pagination?.page;
+    const perPage = pagination?.PageSize;
+
+    if (page && perPage) {
+      const skipAmount = (page - 1) * perPage;
+      queried = queried.skip(skipAmount).limit(perPage);
+    } 
+    return queried.exec();   
   }
 
   updateById<T>(id: string, document: any, populate?: IPopulate, select?: ISelect): Promise<T> {
     if (select) {
       let selectFields = select.remove ? '-' + select.fields.join(" -") : select.fields.join(" ");
       return populate
-      ? this.mongooseModel
-        .findByIdAndUpdate(id, document, this.returnNew)
-        .select(selectFields)
-        .populate(populate)
-        .exec()
-      : this.mongooseModel
-        .findByIdAndUpdate(id, document, this.returnNew)
-        .select(selectFields)
-        .exec();
+        ? this.mongooseModel
+          .findByIdAndUpdate(id, document, this.returnNew)
+          .select(selectFields)
+          .populate(populate)
+          .exec()
+        : this.mongooseModel
+          .findByIdAndUpdate(id, document, this.returnNew)
+          .select(selectFields)
+          .exec();
     }
     return populate
       ? this.mongooseModel
