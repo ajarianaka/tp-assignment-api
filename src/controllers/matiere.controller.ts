@@ -38,7 +38,6 @@ export class MatiereController extends BaseController {
     }
   }
 
-
   getMatieres(req: Request, res: Response) {
     let userInfo: any = (req as CustomRequest).userInfo;
     let filter: any = userInfo['isAdmin'].toString() === 'true' ? {} : { prof: userInfo['id'] };
