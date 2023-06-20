@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "npm run build && node build/index.js",
-    "start:prod": "npm run build && node build/index.js",
+    "start:prod": "cross-env ENVIRONMENT=dev && npm run build && node build/index.js",
     "start:debug": "nodemon",
     "build": "rimraf ./build && tsc"
   },
