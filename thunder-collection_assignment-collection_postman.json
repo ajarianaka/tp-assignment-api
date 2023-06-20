@@ -1,0 +1,418 @@
+{
+    "info": {
+        "_postman_id": "ef64607e-9346-4f0d-aa96-6706ca142ca7",
+        "name": "assignment-collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "user",
+            "item": [
+                {
+                    "name": "get users",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/users?page=1&pageSize=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "users"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "get etudiants",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/etudiants",
+                            "path": [
+                                "etudiants"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "get profs",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/profs",
+                            "path": [
+                                "profs"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "get user by id",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/user/{{userTestId}}",
+                            "path": [
+                                "user",
+                                "{{userTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "add user",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/user",
+                            "path": [
+                                "user"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"firstName\": \"roger\",\n  \"email\": \"roger@gmail.com\",\n  \"lastName\": \"Paul\",\n  \"password\":\"123456\",\n  \"isProf\": false,\n  \"isAdmin\": false,\n  \"photo\": \"https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "update user by id",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/user/{{userTestId}}",
+                            "path": [
+                                "user",
+                                "{{userTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"firstName\": \"roger\",\n  \"email\": \"milou@gmail.com\",\n  \"lastName\": \"Paul\",\n  \"password\":\"123456\",\n  \"isProf\": false,\n  \"isAdmin\": false,\n  \"photo\": \"https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "delete user by id",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}/user/{{userTestId}}",
+                            "path": [
+                                "user",
+                                "{{userTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "login",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/user/login",
+                            "path": [
+                                "user",
+                                "login"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\": \"rojo@gmail.com\",\n  \"password\": \"123456\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "matiere",
+            "item": [
+                {
+                    "name": "add matiere",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/matiere",
+                            "path": [
+                                "matiere"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"nom\": \"Evolution Humaine\",\n  \"coefficient\": 2,\n  \"photo\": \"https://www.spiria.com/sites/default/files/blog/angular-typescript.png\",\n  \"prof\":\"6491444c3a5f8bb450e43fdc\",\n  \"etudiants\":[\"64913fb08ff4f88cc0ae8199\",\"64913fb98ff4f88cc0ae819b\"]\n  \n}"
+                        }
+                    }
+                },
+                {
+                    "name": "update matiere",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/matieres",
+                            "path": [
+                                "matieres"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"_id\": \"6266d8ca7f4b6b2e6cacf597\",\n  \"etudiants\": [\n    \"6266e6402c8e676244eaa548\",\n    \"6266d7e02475684bacd249b8\",\n    \"6266d7cb2475684bacd249b6\"\n  ]\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "get matiere by id",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/matiere/{{matiereTestId}}",
+                            "path": [
+                                "matiere",
+                                "{{matiereTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Detailed",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "delete matiere by id",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}/matiere/{{matiereTestId}}",
+                            "path": [
+                                "matiere",
+                                "{{matiereTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Detailed",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "get matieres",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/matieres",
+                            "path": [
+                                "matieres"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Detailed",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "assignement",
+            "item": [
+                {
+                    "name": "get assigments",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/assignments",
+                            "path": [
+                                "assignments"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "create assignment from matiere",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/assignments/{{matiereTestId}}",
+                            "path": [
+                                "assignments",
+                                "{{matiereTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"nom\":\"Evolution - Assignment\",\n    \"dateDeRendu\":\"2024-03-22\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "delete assignment",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}/assignments/{{assignmentTestId}}",
+                            "path": [
+                                "assignments",
+                                "{{assignmentTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"nom\":\"Evolution - Assignment\",\n    \"dateDeRendu\":\"2024-03-22\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "submit assignment",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/assignment/{{assignmentTestId}}/soumettre",
+                            "path": [
+                                "assignment",
+                                "{{assignmentTestId}}",
+                                "soumettre"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "return assignment",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/assignment/{{assignmentTestId}}/noter",
+                            "path": [
+                                "assignment",
+                                "{{assignmentTestId}}",
+                                "noter"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"note\":19\n}"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "string"
+            }
+        ]
+    }
+}

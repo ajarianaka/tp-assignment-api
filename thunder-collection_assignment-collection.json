@@ -1,0 +1,413 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "assignment-collection",
+    "dateExported": "2023-06-20T18:55:10.784Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "user",
+            "containerId": "",
+            "created": "2023-06-19T21:46:13.486Z",
+            "sortNum": 10000,
+            "settings": {
+                "headers": [],
+                "tests": []
+            }
+        },
+        {
+            "_id": "3d647d18-2fc8-44ea-8c6d-43cd8dd9725c",
+            "name": "matiere",
+            "containerId": "",
+            "created": "2023-06-19T21:46:13.487Z",
+            "sortNum": 20000,
+            "settings": {
+                "headers": [],
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "{{token}}"
+                },
+                "tests": []
+            }
+        },
+        {
+            "_id": "2962056a-9d3b-41a0-9327-bca82335eb02",
+            "name": "assignement",
+            "containerId": "",
+            "created": "2023-06-19T21:46:13.489Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "1fe9d2ca-2d30-46dd-99c7-66e6655aef38",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "2962056a-9d3b-41a0-9327-bca82335eb02",
+            "name": "get assigments",
+            "url": "{{url}}/assignments",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-06-19T21:46:13.487Z",
+            "modified": "2023-06-19T21:46:13.487Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5b97bf37-c0f7-4aa4-bda4-338a93c8d837",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "get users",
+            "url": "{{url}}/users?page=1&pageSize=3",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-06-19T21:46:13.488Z",
+            "modified": "2023-06-20T15:17:36.984Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "pageSize",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "fd2613c8-311a-49e8-b64f-47e195f7c3d8",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "2962056a-9d3b-41a0-9327-bca82335eb02",
+            "name": "create assignment from matiere",
+            "url": "{{url}}/assignments/{{matiereTestId}}",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-06-19T21:46:13.490Z",
+            "modified": "2023-06-20T18:32:33.452Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"nom\":\"Evolution - Assignment\",\n    \"dateDeRendu\":\"2024-03-22\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.[0]._id",
+                    "action": "setto",
+                    "value": "{{assignmentTestId}}"
+                }
+            ]
+        },
+        {
+            "_id": "00dc9cbf-15fd-4f15-85c8-9f968045fd47",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "get etudiants",
+            "url": "{{url}}/etudiants",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2023-06-19T23:30:51.198Z",
+            "modified": "2023-06-19T23:31:22.199Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "2f0dc860-334d-4019-ac48-c296928d14ba",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "2962056a-9d3b-41a0-9327-bca82335eb02",
+            "name": "delete assignment",
+            "url": "{{url}}/assignments/{{assignmentTestId}}",
+            "method": "DELETE",
+            "sortNum": 25000,
+            "created": "2023-06-20T18:53:11.557Z",
+            "modified": "2023-06-20T18:54:37.121Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"nom\":\"Evolution - Assignment\",\n    \"dateDeRendu\":\"2024-03-22\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.[0]._id",
+                    "action": "setto",
+                    "value": "{{assignmentTestId}}"
+                }
+            ]
+        },
+        {
+            "_id": "a4b178d1-889c-4a34-b905-79a2bf700fda",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "get profs",
+            "url": "{{url}}/profs",
+            "method": "GET",
+            "sortNum": 27500,
+            "created": "2023-06-20T12:28:14.774Z",
+            "modified": "2023-06-20T12:28:29.125Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c8b25e8d-dc12-4ed8-9745-f8361a28e1df",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "get user by id",
+            "url": "{{url}}/user/{{userTestId}}",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-06-19T21:46:13.491Z",
+            "modified": "2023-06-19T21:46:13.491Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "74fb7826-4577-4498-8e00-55fedea367e5",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "2962056a-9d3b-41a0-9327-bca82335eb02",
+            "name": "submit assignment",
+            "url": "{{url}}/assignment/{{assignmentTestId}}/soumettre",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-06-20T18:23:30.204Z",
+            "modified": "2023-06-20T18:28:34.396Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "2e964396-5969-4fb6-a0ac-acb8dd2a09b9",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "add user",
+            "url": "{{url}}/user",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-06-19T21:46:13.493Z",
+            "modified": "2023-06-20T17:00:23.040Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"roger\",\n  \"email\": \"roger@gmail.com\",\n  \"lastName\": \"Paul\",\n  \"password\":\"123456\",\n  \"isProf\": false,\n  \"isAdmin\": false,\n  \"photo\": \"https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json._id",
+                    "action": "setto",
+                    "value": "{{userTestId}}"
+                }
+            ]
+        },
+        {
+            "_id": "09df67d1-a784-487e-a82e-66042e48cad3",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "2962056a-9d3b-41a0-9327-bca82335eb02",
+            "name": "return assignment",
+            "url": "{{url}}/assignment/{{assignmentTestId}}/noter",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-06-20T18:32:49.439Z",
+            "modified": "2023-06-20T18:33:37.330Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"note\":19\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2689ea1b-25cc-4c37-88ae-b34d943ad0b7",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "update user by id",
+            "url": "{{url}}/user/{{userTestId}}",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2023-06-19T21:46:13.494Z",
+            "modified": "2023-06-20T12:31:08.241Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"roger\",\n  \"email\": \"milou@gmail.com\",\n  \"lastName\": \"Paul\",\n  \"password\":\"123456\",\n  \"isProf\": false,\n  \"isAdmin\": false,\n  \"photo\": \"https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "71fa6ee4-88cb-464e-b0c4-81e18a8fada3",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "delete user by id",
+            "url": "{{url}}/user/{{userTestId}}",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-06-19T21:46:13.495Z",
+            "modified": "2023-06-19T21:46:13.495Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "68922724-ebcc-4a34-8bd8-e4da26c8949b",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "afcfca88-98b6-457c-868b-2f91abdc96e9",
+            "name": "login",
+            "url": "{{url}}/user/login",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-06-19T21:46:13.496Z",
+            "modified": "2023-06-20T17:43:25.649Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"rojo@gmail.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.x-token",
+                    "action": "setto",
+                    "value": "{{token}}"
+                }
+            ]
+        },
+        {
+            "_id": "5a568d0e-f284-4528-acb7-107ee57ac48a",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "3d647d18-2fc8-44ea-8c6d-43cd8dd9725c",
+            "name": "add matiere",
+            "url": "{{url}}/matiere",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-06-19T21:46:13.497Z",
+            "modified": "2023-06-20T17:17:45.814Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nom\": \"Evolution Humaine\",\n  \"coefficient\": 2,\n  \"photo\": \"https://www.spiria.com/sites/default/files/blog/angular-typescript.png\",\n  \"prof\":\"6491444c3a5f8bb450e43fdc\",\n  \"etudiants\":[\"64913fb08ff4f88cc0ae8199\",\"64913fb98ff4f88cc0ae819b\"]\n  \n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.result._id",
+                    "action": "setto",
+                    "value": "{{matiereTestId}}"
+                }
+            ]
+        },
+        {
+            "_id": "d68e1e83-f19a-401d-b2a2-584407830375",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "3d647d18-2fc8-44ea-8c6d-43cd8dd9725c",
+            "name": "update matiere",
+            "url": "{{url}}/matieres",
+            "method": "PUT",
+            "sortNum": 85000,
+            "created": "2023-06-19T21:46:13.499Z",
+            "modified": "2023-06-19T21:46:13.499Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": \"6266d8ca7f4b6b2e6cacf597\",\n  \"etudiants\": [\n    \"6266e6402c8e676244eaa548\",\n    \"6266d7e02475684bacd249b8\",\n    \"6266d7cb2475684bacd249b6\"\n  ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "edf1352d-efc9-4c9c-bec7-9bcb66f4db81",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "3d647d18-2fc8-44ea-8c6d-43cd8dd9725c",
+            "name": "get matiere by id",
+            "url": "{{url}}/matiere/{{matiereTestId}}",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2023-06-19T21:46:13.500Z",
+            "modified": "2023-06-20T18:35:33.123Z",
+            "headers": [
+                {
+                    "name": "Detailed",
+                    "value": "true"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e420e0b9-6d4d-4aad-bb45-97c6164a7acd",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "3d647d18-2fc8-44ea-8c6d-43cd8dd9725c",
+            "name": "delete matiere by id",
+            "url": "{{url}}/matiere/{{matiereTestId}}",
+            "method": "DELETE",
+            "sortNum": 95000,
+            "created": "2023-06-20T18:35:51.812Z",
+            "modified": "2023-06-20T18:36:11.761Z",
+            "headers": [
+                {
+                    "name": "Detailed",
+                    "value": "true"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9e114f50-c467-4e7c-8537-ffbe74ac6db9",
+            "colId": "a67d3934-6753-49aa-8da1-305588a1a81a",
+            "containerId": "3d647d18-2fc8-44ea-8c6d-43cd8dd9725c",
+            "name": "get matieres",
+            "url": "{{url}}/matieres",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-06-19T21:46:13.501Z",
+            "modified": "2023-06-19T21:46:13.501Z",
+            "headers": [
+                {
+                    "name": "Detailed",
+                    "value": "true"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "headers": [
+            {
+                "name": "x-access-token",
+                "value": "{{token}}"
+            },
+            {
+                "name": "x-project-id",
+                "value": "{{projectId}}"
+            }
+        ],
+        "auth": {
+            "type": "bearer",
+            "bearer": "{{token}}"
+        },
+        "tests": []
+    }
+}

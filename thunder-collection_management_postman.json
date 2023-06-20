@@ -1,0 +1,374 @@
+{
+    "info": {
+        "_postman_id": "fff1927a-de0c-425f-af9a-a1f65f99a0d2",
+        "name": "management",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "user",
+            "item": [
+                {
+                    "name": "get users",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/users",
+                            "path": [
+                                "users"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "get user by id",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/user/{{userTestId}}",
+                            "path": [
+                                "user",
+                                "{{userTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "add user",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/user",
+                            "path": [
+                                "user"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"firstName\": \"andriambelo\",\n  \"email\": \"andriambelo@gmail.com\",\n  \"lastName\": \"ramambazafy\",\n  \"password\":\"123456\",\n  \"projects\":[\"627e7f636c734d580c181163\",\"627e7f6a6c734d580c181165\"]\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "update user by id",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/users/",
+                            "path": [
+                                "users"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"_id\": \"{{userTestId}}\",\n  \"photoUrl\": \"www.google.com1\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "delete user by id",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}/user/{{userTestId}}",
+                            "path": [
+                                "user",
+                                "{{userTestId}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "login",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/user/login",
+                            "path": [
+                                "user",
+                                "login"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\": \"ajary@gmail.com\",\n  \"password\": \"123456\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "project",
+            "item": [
+                {
+                    "name": "add project",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/project",
+                            "path": [
+                                "project"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Role\",\n  \"description\": \"Multiliste v2\",\n  \"startDate\": \"2022-05-01\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "update matiere",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/matieres",
+                            "path": [
+                                "matieres"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"_id\": \"6266d8ca7f4b6b2e6cacf597\",\n  \"etudiants\": [\n    \"6266e6402c8e676244eaa548\",\n    \"6266d7e02475684bacd249b8\",\n    \"6266d7cb2475684bacd249b6\"\n  ]\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "get matiere by id",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/matieres/6266d8ca7f4b6b2e6cacf597",
+                            "path": [
+                                "matieres",
+                                "6266d8ca7f4b6b2e6cacf597"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Detailed",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "get matieres",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/matieres",
+                            "path": [
+                                "matieres"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Detailed",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "get matieres by prof",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/user/6263fde6fcc3ea0a78e07e46/matieres",
+                            "path": [
+                                "user",
+                                "6263fde6fcc3ea0a78e07e46",
+                                "matieres"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "transaction",
+            "item": [
+                {
+                    "name": "add transaction",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/transaction/",
+                            "path": [
+                                "transaction"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"title\": \"Achat\",\n  \"description\": \"e10adc3949ba59abbe56e057f20f883e\",\n  \"amount\":100,\n  \"type\":\"debit\",\n  \"userId\":\"627e919f705fc1ac6048b65b\",\n  \"date\":\"2022-05-03\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "creation authentication",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/user/create-login/62394c87111c39263ab3f001",
+                            "path": [
+                                "user",
+                                "create-login",
+                                "62394c87111c39263ab3f001"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"nom\": \"Mopolo\",\n  \"motDePasse\": \"test\",\n  \"derniereConnexion\": \"2022-03-22\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "get transactions",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/transactions/",
+                            "path": [
+                                "transactions"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "assignement",
+            "item": [
+                {
+                    "name": "get assigments",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/assignments",
+                            "path": [
+                                "assignments"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "create assignment from matiere",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/matiere/{{matiereTestId}}/create-assignments",
+                            "path": [
+                                "matiere",
+                                "{{matiereTestId}}",
+                                "create-assignments"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"nom\":\"Java Tp1\",\n    \"dateDeRendu\":\"2022-03-22\"\n}"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "string"
+            }
+        ]
+    }
+}

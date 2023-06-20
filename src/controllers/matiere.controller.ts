@@ -4,6 +4,8 @@ import { Response, Request } from "express";
 import { MatiereDoc } from "../interfaces/matiere.interface";
 import { MatiereModel } from "../models/matiere.model";
 import { IPagination } from "../interfaces/IPagination";
+import { CustomRequest } from "../interfaces/customRequest.interface";
+import { JwtPayload } from "jsonwebtoken";
 
 export class MatiereController extends BaseController {
   constructor() {
@@ -36,13 +38,13 @@ export class MatiereController extends BaseController {
     }
   }
 
+
   getMatieres(req: Request, res: Response) {
-    let profId = <string>req.headers["profId"];
-    let isAdmin: boolean = req.headers["isAdmin"]?.toString() === 'true';
-    let filter: any = isAdmin ? {} : { prof: profId };
+    let userInfo: any = (req as CustomRequest).userInfo;
+    let filter: any = userInfo['isAdmin'].toString() === 'true' ? {} : { prof: userInfo['id'] };
     let pagination: IPagination = {
-      page: parseInt(req.query.page!.toString()),
-      PageSize: parseInt(req.query.pageSize!.toString())
+      page: req.query.page ? parseInt(req.query.page.toString()) : undefined,
+      PageSize: req.query.pageSize ? parseInt(req.query.pageSize!.toString()) : undefined
     }
     return this.findMany(res, filter, { path: 'prof etudiants', select: '-password' }, { remove: true, fields: ["password"] }, pagination, "");
   }

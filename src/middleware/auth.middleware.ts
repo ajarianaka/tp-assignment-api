@@ -3,7 +3,7 @@ import { Response, Request, NextFunction } from "express";
 import { configs } from "../config/auth.config";
 import { CustomRequest } from "../interfaces/customRequest.interface";
 
-export const verifyToken = async (
+export const hasValidToken = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -46,19 +46,16 @@ export const hasAccess = async (
                 message: "failed to authenticate token",
             });
             return;
-        } else { 
+        } else {
             let jwtPayload = <JwtPayload>decoded;
             let isProf: boolean = jwtPayload["isProf"];
-            console.log(isProf);
             if (isProf) {
-                const headers = req.headers;
-                headers['profId']=jwtPayload["id"]
-                headers['isAdmin']=jwtPayload["isAdmin"]
+                (req as CustomRequest).userInfo = <JwtPayload>decoded;
                 next();
             } else {
                 res.status(403).json({
                     error: "Forbidden",
-                    message: "You don`t have access to this project",
+                    message: "You don`t have the right access to perform this action",
                 });
                 return;
             }
@@ -86,13 +83,13 @@ export const isAdmin = async (
         } else {
             let jwtPayload = <JwtPayload>decoded;
             let isAdmin: boolean = jwtPayload["isAdmin"];
-            console.log(isAdmin);
             if (isAdmin) {
+                (req as CustomRequest).userInfo = <JwtPayload>decoded;
                 next();
             } else {
                 res.status(403).json({
                     error: "Forbidden",
-                    message: "You don`t have access to this project",
+                    message: "You don`t have the access right to do this action",
                 });
                 return;
             }

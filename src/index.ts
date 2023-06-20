@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import connect from './connect';
 import { env } from "./environment/env";
 import { usersRouter } from "./routes/user.route";
-import { assignmentRouter } from "./routes/assignment.route";
+import { assignmentsRouter } from "./routes/assignment.route";
 import { matieresRouter } from './routes/matiere.route';
 
 
@@ -37,8 +37,7 @@ let dbConString = env().db.uri(
 
 connect({ db: dbConString });
 
-let routes = [usersRouter, matieresRouter, assignmentRouter];
-//routes({ app });
+let routes = [usersRouter, matieresRouter, assignmentsRouter];
 
 routes.forEach((route) => {
   app.use(`${env().apiPath}`, route);

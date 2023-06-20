@@ -1,16 +1,17 @@
 import { Router } from 'express';
-import { verifyToken, hasAccess } from '../middleware/auth.middleware';
+import { hasValidToken, hasAccess } from '../middleware/auth.middleware';
 import { assignmentController } from "../controllers/controllers.module";
-export const assignmentRouter = Router();
+export const assignmentsRouter = Router();
 
 const prefix = '/assignment';
 
-assignmentRouter.get('/assignments/:id', hasAccess, (req, res) => { assignmentController.getAssignments(req, res) });
-assignmentRouter.get(prefix + '/:id', verifyToken, (req, res) => { assignmentController.findById(res, req.params.id, { path: 'projects' }) });
-assignmentRouter.post('/assignments/:id', hasAccess, (req, res) => { assignmentController.createAssigments(req, res) });
-assignmentRouter.put(prefix + ':id', verifyToken, (req, res) => { assignmentController.updateAssignmentById(req, res) });
-assignmentRouter.delete(prefix + '/:id', verifyToken, (req, res) => { assignmentController.deleteById(res, req.params.id) });
-assignmentRouter.put('/assignment/:id/soumettre', verifyToken, (req, res) => { assignmentController.submitAssignmentById(req, res) });
-assignmentRouter.put('/assignment/:id/noter', verifyToken, (req, res) => { assignmentController.markAssignmentById(req, res) });
-assignmentRouter.get('/submitted-assignments/:id', hasAccess, (req, res) => { assignmentController.getAssignments(req, res) });
-assignmentRouter.get('/returned-assignments/:id', hasAccess, (req, res) => { assignmentController.getAssignments(req, res) });
+assignmentsRouter.get('/matiere/:id/assignments', hasAccess, (req, res) => { assignmentController.getAssignmentsByMatiere(req, res) });
+assignmentsRouter.get('/assignments/', hasValidToken, (req, res) => { assignmentController.getAssignments(req, res) });
+assignmentsRouter.get(prefix + '/:id', hasValidToken, (req, res) => { assignmentController.findById(res, req.params.id) });
+assignmentsRouter.post('/assignments/:id', hasAccess, (req, res) => { assignmentController.createAssigments(req, res) });
+assignmentsRouter.put(prefix + ':id', hasValidToken, (req, res) => { assignmentController.updateAssignmentById(req, res) });
+assignmentsRouter.delete(prefix + '/:id', hasValidToken, (req, res) => { assignmentController.deleteById(res, req.params.id) });
+assignmentsRouter.put('/assignment/:id/soumettre', hasValidToken, (req, res) => { assignmentController.submitAssignmentById(req, res) });
+assignmentsRouter.put('/assignment/:id/noter', hasValidToken, (req, res) => { assignmentController.markAssignmentById(req, res) });
+assignmentsRouter.get('/submitted-assignments/', hasAccess, (req, res) => { assignmentController.getSubmittedAssignments(req, res) });
+assignmentsRouter.get('/returned-assignments/', hasAccess, (req, res) => { assignmentController.getReturnedAssignments(req, res) });

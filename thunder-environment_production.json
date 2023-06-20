@@ -1,0 +1,32 @@
+{
+    "client": "Thunder Client",
+    "environmentName": "production",
+    "dateExported": "2023-06-20T18:57:24.243Z",
+    "version": "1.0",
+    "variables": [
+        {
+            "name": "url",
+            "value": "https://assignment-web-api.onrender.com/api/v1"
+        },
+        {
+            "name": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTE0NDRjM2E1ZjhiYjQ1MGU0M2ZkYyIsImlzUHJvZiI6dHJ1ZSwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY4NzI4MzAwNSwiZXhwIjoxNjg3Mjg2NjA1fQ.RuK8u0JR54cZrTpcakrX5dcRBS1FeeSqGrNiPG02CSk"
+        },
+        {
+            "name": "userTestId",
+            "value": "6491c33881cb2eabf0005c0a"
+        },
+        {
+            "name": "matiereTestId",
+            "value": "6491c35481cb2eabf0005c0d"
+        },
+        {
+            "name": "assigmentTestId",
+            "value": "6491f076b8ab5d9698aa6619"
+        },
+        {
+            "name": "assignmentTestId",
+            "value": "6491f0c1b8ab5d9698aa661d"
+        }
+    ]
+}
